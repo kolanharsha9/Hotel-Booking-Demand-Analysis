@@ -1,0 +1,1 @@
+The app and the static plots are given in two sepearte python files. To run the files, you need to import necessary packages and run the python files.
