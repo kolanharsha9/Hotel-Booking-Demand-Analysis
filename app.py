@@ -30,6 +30,7 @@ import dash_bootstrap_components as dbc
 
 
 my_app = dash.Dash('My app')
+server=my_app.server
 my_app.layout = html.Div([html.H1(children='Hotel Booking Demand Analysis App',
                                   style={'textAlign':'center'}),
 
