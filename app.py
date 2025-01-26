@@ -1,21 +1,14 @@
-import dash
 from dash import dcc, html, Input, Output
 import pandas as pd
-
 import matplotlib.pyplot as plt
 import plotly.express as px
 import dash_daq as daq
 import dash as dash
-import pandas as pd
-from dash import dcc
-from dash import html
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import numpy as np
 from dash.dependencies import Input, Output
 import pandas as pd
-import dash
-from dash import dcc, html, Input, Output
 from scipy.stats import normaltest, kstest, shapiro
 import plotly.express as px
 import plotly.graph_objects as go
@@ -272,17 +265,17 @@ def update_pca_graph(explained_variance):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(df_numerical)
 
-    # Perform PCA
+
     pca = PCA()
     pca.fit(X_scaled)
 
-    # Calculate cumulative explained variance
+
     var_ratio_cumsum = np.cumsum(pca.explained_variance_ratio_) * 100
 
-    # Calculate the number of components for the selected explained variance
+
     num_components = np.argmax(var_ratio_cumsum >= explained_variance) + 1
 
-    # Plot explained variance ratio
+
     pca_fig = go.Figure()
     pca_fig.add_trace(go.Scatter(x=np.arange(1, num_components + 1),
                                  y=var_ratio_cumsum[:num_components],
@@ -303,27 +296,27 @@ def update_pca_graph(explained_variance):
     [Input('explained-variance-slider', 'value')]
 )
 def update_info_text(explained_variance):
-    # Scale the features
+
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(df_numerical)
 
-    # Perform PCA
+
     pca = PCA()
     pca.fit(X_scaled)
 
-    # Calculate cumulative explained variance
+
     var_ratio_cumsum = np.cumsum(pca.explained_variance_ratio_) * 100
 
-    # Find the index where explained variance ratio exceeds the threshold
+
     num_components = np.argmax(var_ratio_cumsum >= explained_variance) + 1
 
-    # Number of components to remove
+
     num_components_to_remove = pca.n_components_ - num_components
 
-    # Remove components
+
     reduced_X = pca.transform(X_scaled)[:, :-num_components_to_remove]
 
-    # Calculate condition number of the reduced feature space
+    
     condition_number = np.linalg.cond(reduced_X)
 
     return html.Div([

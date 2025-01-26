@@ -140,6 +140,7 @@ sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidt
 
 plt.title('Correlation Coefficient Matrix between Features', fontsize=15, fontname='serif', color='blue')
 plt.xticks(rotation=30)
+plt.yticks(rotation=30)
 plt.show()
 
 
@@ -247,21 +248,12 @@ print(table)
 #%%
 correlation_matrix = df_numerical.corr()
 
-# Plot heatmap
-plt.figure(figsize=(10, 8))
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
-plt.title('Pearson Correlation Coefficient Heatmap')
-plt.show()
 
 # Plot scatter plot matrix
 sns.pairplot(df_numerical)
 plt.title('Scatter Plot Matrix', y=1.02)
 plt.show()
-#%%
-# # Plot scatter plot matrix with kernel density estimate
-# sns.pairplot(df_numerical, kind='kde')
-# plt.suptitle('Scatter Plot Matrix with Kernel Density Estimate', y=1.02)
-# plt.show()
+
 #%%
 df=pd.read_csv('hotel_pre.csv')
 df.head().to_string()
@@ -334,7 +326,7 @@ plt.show()
 # Separate the DataFrame into Resort Hotel and City Hotel
 meal_counts = df['meal'].value_counts()
 
-# Plotting the pie plot
+
 plt.figure(figsize=(10, 6))
 plt.pie(meal_counts, labels=meal_counts.index, autopct='%1.1f%%', startangle=140)
 plt.title('Distribution of Meals in the Hotel')
@@ -348,29 +340,14 @@ plt.title('Distribution Plot of Average Daily Rate (ADR)', fontsize=15, fontname
 plt.xlabel('ADR', fontsize=15, fontname='serif', color='darkred')
 plt.ylabel('Density', fontsize=15, fontname='serif', color='darkred')
 plt.show()
-#%%
-print(df.head().to_string())
-#%%
-#pair plot
-scatter_matrix = sns.pairplot(df_numerical,kind='reg')
 
 
-plt.show()
-#%%
-#Heat map with cbar
-corr_matrix = df.corr()
-
-# Plot the heatmap
-plt.figure(figsize=(12, 8))
-sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', cbar=True)
-plt.title('Correlation Heatmap', fontsize=15, fontname='serif', color='blue')
-plt.show()
 #%%
 #Hist plot with KDE
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Plotting
+
 plt.figure(figsize=(10, 6))
 sns.histplot(df['booking_to_arrival_ratio'], kde=True)
 plt.title('Histogram Plot with KDE for Booking To Arrival Ratio', fontsize=15, fontname='serif', color='blue')
@@ -381,14 +358,14 @@ plt.show()
 #qq plot
 from statsmodels.graphics.gofplots import qqplot
 
-# Plotting
+
 plt.figure(figsize=(8, 6))
 qqplot(df['adr'], line='s')
 plt.title('QQ Plot for ADR', fontsize=15, fontname='serif', color='blue')
 plt.xlabel('Theoretical Quantiles', fontsize=15, fontname='serif', color='darkred')
 plt.ylabel('Sample Quantiles', fontsize=15, fontname='serif', color='darkred')
 plt.grid(True)
-plt.show()
+
 #%%
 #KDE plot
 plt.figure(figsize=(10, 6))
@@ -410,7 +387,7 @@ plt.show()
 variables = ['special_requests_per_person', 'lead_time_per_night',
                      'adr_per_person', 'booking_to_arrival_ratio']
 
-# Plotting
+
 plt.figure(figsize=(12, 8))
 sns.boxenplot(data=df[variables])
 plt.title('Multivariate Boxen Plot', fontsize=15, fontname='serif', color='blue')
@@ -424,19 +401,18 @@ total_people_per_month = df.groupby('arrival_date_month')['total_people'].sum()
 # Reindexing the series to ensure all months are present
 total_people_per_month = total_people_per_month.reindex(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
 
-# Plotting the area plot
+
 plt.figure(figsize=(10, 6))
 total_people_per_month.plot.area()
 
-# Set the title and labels
+
 plt.title('Total People Over Months', fontsize=15, fontname='serif', color='blue')
 plt.xlabel('Month', fontsize=15, fontname='serif', color='darkred')
 plt.ylabel('Total People', fontsize=15, fontname='serif', color='darkred')
 
-# Set x-axis ticks for all months
+
 plt.xticks(ticks=range(len(total_people_per_month)), labels=total_people_per_month.index, rotation=45)
 
-# Show the plot
 plt.tight_layout()
 plt.show()
 #%%
@@ -444,35 +420,19 @@ plt.show()
 plt.figure(figsize=(10, 6))
 sns.violinplot(x='market_segment', y='lead_time', data=df, palette='Set2')
 
-# Set the title and labels
+
 plt.title('Lead Time by Market Segment', fontsize=15, fontname='serif', color='blue')
 plt.xlabel('Market Segment', fontsize=15, fontname='serif', color='darkred')
 plt.ylabel('Lead Time', fontsize=15, fontname='serif', color='darkred')
 
-# Rotate x-axis labels for better readability
+
 plt.xticks(rotation=45)
 
-# Show the plot
+
 plt.tight_layout()
 plt.show()
-#%%
-sns.jointplot(x='lead_time', y='booking_to_arrival_ratio', data=df, kind='scatter', color='blue', marginal_kws=dict(bins=30, fill=True))
 
-# Set the title and labels
-plt.xlabel('Lead Time', fontsize=15, fontname='serif', color='darkred')
-plt.ylabel('Booking to Arrival Ratio', fontsize=15, fontname='serif', color='darkred')
 
-# Show the plot
-plt.show()
-#%%
-sns.jointplot(x='lead_time', y='booking_to_arrival_ratio', data=df, kind='kde', color='blue')
-
-# Set the title and labels
-plt.xlabel('Lead Time', fontsize=15, fontname='serif', color='darkred')
-plt.ylabel('Booking to Arrival Ratio', fontsize=15, fontname='serif', color='darkred')
-
-# Show the plot
-plt.show()
 #%%
 #Rug plot
 plt.figure(figsize=(10, 6))
@@ -480,7 +440,7 @@ sns.scatterplot(data=df, x='adr', y='booking_to_arrival_ratio', s=5)
 sns.rugplot(data=df, x='adr', y='booking_to_arrival_ratio', lw=1,alpha=0.3)
 plt.title('Rug Plot for Booking to Arrival Ratio and ADR', fontsize=15, fontname='serif', color='blue')
 
-# Show the plots
+
 plt.show()
 #%%
 # Create a 3D plot
@@ -490,7 +450,7 @@ ax = fig.add_subplot(111, projection='3d')
 # Scatter plot
 ax.scatter(df['lead_time'], df['adr'], df['booking_to_arrival_ratio'], c='b', marker='o')
 
-# Set labels and title
+
 ax.set_xlabel('Lead Time', fontsize=15, fontname='serif', color='darkred')
 ax.set_ylabel('ADR', fontsize=15, fontname='serif', color='darkred')
 ax.set_zlabel('Booking to Arrival Ratio', fontsize=15, fontname='serif', color='darkred')
@@ -498,34 +458,7 @@ ax.set_title('3D Scatter Plot', fontsize=15, fontname='serif', color='blue')
 
 
 plt.show()
-#%%
-# x = df['lead_time']
-# y = df['adr']
-#
-# # Define the number of bins for the histogram
-# bins = [np.linspace(x.min(), x.max(), 5000), np.linspace(y.min(), y.max(), 5000)]
-#
-# # Create the 2D histogram
-# H, xedges, yedges = np.histogram2d(x, y, bins=bins)
-#
-# # Plot the contour
-# plt.contour(yedges[:-1], xedges[:-1], H, alpha=0.7, cmap=plt.cm.jet)
-# plt.xlabel('ADR', fontsize=15, fontname='serif', color='darkred')
-# plt.ylabel('Lead Time', fontsize=15, fontname='serif', color='darkred')
-# plt.title('Contour Plot', fontsize=15, fontname='serif', color='blue')
-# plt.colorbar(label='Density')
-# plt.show()
-#%%
-#cluster map
-sns.clustermap(
-    df_numerical,
-    figsize=(15, 8),
-    row_cluster=False,
-    dendrogram_ratio=(.1, .2),
-    cbar_pos=(0, .2, .03, .4)
-)
-plt.title('Cluster Map of Numerical variables')
-plt.show()
+
 #%%
 #Hexbin plot
 plt.hexbin(df['adr_per_person'], df['booking_to_arrival_ratio'], gridsize=20, cmap='Blues', edgecolors='none')
@@ -544,49 +477,8 @@ plt.ylabel('Lead Time', fontsize=15, fontname='serif', color='darkred')
 plt.xticks(rotation=30)
 plt.grid(True)
 plt.show()
-#%%
-# Create a swarm plot
-plt.figure(figsize=(10, 6))
-sns.swarmplot(data=df, x='market_segment', y='total_people')
-plt.title('Swarm Plot of Total People Across Market Segments', fontsize=15, fontname='serif', color='blue')
-plt.xlabel('Market Segment', fontsize=15, fontname='serif', color='darkred')
-plt.ylabel('Total People', fontsize=15, fontname='serif', color='darkred')
-plt.xticks(rotation=45)
-plt.grid(True)
-plt.show()
-#%%
-#statistical analysis
-# print(df.describe().to_string())
-# sns.set(style="white")
-# sns.kdeplot(data=df_numerical)
-# plt.title("Multivariate Kernel Density Estimate")
-# plt.show()
-# print(df_numerical.head().to_string())
-#%%
-#interactive plots
-# df2 = df[df['is_canceled']== 0].copy()
-# df2['arrival_date_month'] = df2['arrival_date_month'].replace({
-#     'January' : 'Jan',
-#     'February': 'Feb',
-#     'March': 'Mar',
-#     'April': 'Apr',
-#     'June': 'Jun',
-#     'July': 'Jul',
-#     'August': 'Aug',
-#     'September': 'Sep',
-#     'October': 'Oct',
-#     'November': 'Nov',
-#     'December': 'Dec'
-# })
-# mnths= ['Jan', 'Feb', 'Mar', 'Apr','May', 'Jun',
-#         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-#
-# # Count the frequency of each unique month orders by actual month order
-# df_months = df2['arrival_date_month'].value_counts().reindex(mnths).reset_index().copy()
-# df_months.columns = ['month', 'bookings']
-#
-# # DataFrame that contains the total bookings per month
-# df_months.head(2)
+
+
 #%%
 # Filter the DataFrame and count occurrences of each country
 country_counts = df[df['is_canceled'] == 0]['country'].value_counts()
@@ -598,7 +490,7 @@ total_guests = country_data["Number of Guests"].sum()
 
 country_data["Guests in %"] = round(country_data["Number of Guests"] / total_guests * 100, 2)
 
-# pie plot
+
 fig = px.pie(country_data,
              values="Number of Guests",
              names="country",
@@ -636,41 +528,41 @@ resort_company_counts = resort_company_counts.sort_values(by='count', ascending=
 # Select the top 10 companies
 top_10_resort_companies = resort_company_counts.head(10)
 
-# Plot the pie chart using Plotly Express
+
 fig_resort_company = px.pie(top_10_resort_companies,
                     values='count',
                     names='company',
                     title='Top 10 Companies for Resort Hotel',
                     template='ggplot2')
 
-# Update the traces for better visualization
+
 fig_resort_company.update_traces(textposition='inside', textinfo='value+percent+label')
 
-# Show the pie chart
+
 fig_resort_company.show()
 #%%
 import plotly.express as px
 city_hotel_df=df[df['hotel']=='City Hotel']
-# Group the DataFrame by company, count occurrences, and reset index
+
 city_company_counts = city_hotel_df.groupby('company').size().reset_index(name='count')
 
-# Sort the counts in descending order
+
 city_company_counts = city_company_counts.sort_values(by='count', ascending=False)
 
-# Select the top 10 companies
+
 top_10_city_companies = city_company_counts.head(10)
 
-# Plot the pie chart using Plotly Express
+
 fig_city_company = px.pie(top_10_city_companies,
                   values='count',
                   names='company',
                   title='Top 10 Companies for City Hotel',
                   template='ggplot2')
 
-# Update the traces for better visualization
+
 fig_city_company.update_traces(textposition='inside', textinfo='value+percent+label')
 
-# Show the pie chart
+
 fig_city_company.show()
 #%%
 resort_agent_counts = resort_hotel_df.groupby('agent').size().reset_index(name='count')
@@ -678,20 +570,20 @@ resort_agent_counts = resort_hotel_df.groupby('agent').size().reset_index(name='
 # Sort the counts in descending order
 resort_agent_counts = resort_agent_counts.sort_values(by='count', ascending=False)
 
-# Select the top 10 companies
+
 top_10_resort_agents = resort_agent_counts.head(10)
 
-# Plot the pie chart using Plotly Express
+
 fig_resort_agent = px.pie(top_10_resort_agents,
                     values='count',
                     names='agent',
                     title='Top 10 agents for Resort Hotel',
                     template='ggplot2')
 
-# Update the traces for better visualization
+
 fig_resort_agent.update_traces(textposition='inside', textinfo='value+percent+label')
 
-# Show the pie chart
+
 fig_resort_agent.show()
 #%%
 import plotly.express as px
@@ -699,33 +591,33 @@ import plotly.express as px
 # Group the DataFrame by company, count occurrences, and reset index
 city_agent_counts = city_hotel_df.groupby('agent').size().reset_index(name='count')
 
-# Sort the counts in descending order
+
 city_agent_counts = city_agent_counts.sort_values(by='count', ascending=False)
 
-# Select the top 10 companies
+
 top_10_city_agents = city_agent_counts.head(10)
 
-# Plot the pie chart using Plotly Express
+
 fig_city_agent = px.pie(top_10_city_agents,
                   values='count',
                   names='agent',
                   title='Top 10 agents for City Hotel',
                   template='ggplot2')
 
-# Update the traces for better visualization
+
 fig_city_agent.update_traces(textposition='inside', textinfo='value+percent+label')
 
-# Show the pie chart
+
 fig_city_agent.show()
 #%%
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-# Create subplots, using 'domain' type for pie charts
+
 specs = [[{'type':'domain'}, {'type':'domain'}], [{'type':'domain'}, {'type':'domain'}]]
 fig = make_subplots(rows=2, cols=2, specs=specs)
 
-# Add pie charts to subplots
+
 
 
 fig.add_trace(go.Pie(
@@ -769,7 +661,7 @@ repeated_guests_per_hotel_country = repeated_guests.groupby(['hotel', 'country']
 # Sort the data by repeated guest count
 repeated_guests_per_hotel_country = repeated_guests_per_hotel_country.sort_values(by='repeated_guest_count', ascending=False)
 
-# Plotting
+
 plt.figure(figsize=(14, 8))
 sns.barplot(data=repeated_guests_per_hotel_country, x='country', y='repeated_guest_count', hue='hotel', palette='Set2')
 plt.title('Number of Repeated Guests from Each Country by Hotel Type')
@@ -812,7 +704,7 @@ ordered_months = ["January", "February", "March", "April", "May", "June",
                   "July", "August", "September", "October", "November", "December"]
 full_cancel_data["Month"] = pd.Categorical(full_cancel_data["Month"], categories=ordered_months, ordered=True)
 
-# Plotting
+
 plt.figure(figsize=(12, 8))
 sns.lineplot(data=full_cancel_data, x='Month', y='cancel_percent', hue='Hotel', marker='o')
 plt.title('Cancellation Percentage per Month by Hotel Type', fontsize=15, fontname='serif', color='blue')
@@ -838,7 +730,7 @@ arrival_counts = arrival_counts.reindex(months_order)
 
 plt.figure(figsize=(15, 6))
 
-# Plotting with Seaborn
+
 sns.lineplot(data=arrival_counts, marker='o', palette='Set1')
 
 plt.title('Arrivals per month by Hotel Type', fontsize=15, fontname='serif', color='blue')
@@ -848,5 +740,4 @@ plt.grid(True)
 plt.xticks(range(len(arrival_counts)), arrival_counts.index, rotation=45)
 plt.tight_layout()
 plt.show()
-#%%
 
