@@ -256,7 +256,7 @@ plt.show()
 
 #%%
 df=pd.read_csv('hotel_pre.csv')
-df.head().to_string()
+
 #line plot
 arrival_counts = df.groupby(by=["arrival_date_month"]).size()
 

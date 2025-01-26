@@ -58,7 +58,7 @@ dcc.Tab(label='Other plots',value='q8')
 
 
 
-df1=pd.read_csv('hotel_outliers.csv')
+df1=pd.read_csv('hotel_pre.csv')
 df2=df1.copy(deep=True)
 numerical_columns = ['special_requests_per_person', 'lead_time_per_night', 'adr_per_person', 'booking_to_arrival_ratio',
                      'adr']
