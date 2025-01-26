@@ -2,6 +2,7 @@
 
 ## Overview
 This repository contains a Python-based application and scripts to analyze hotel booking datasets, visualize trends, and apply various preprocessing and statistical techniques.
+![Image](https://github.com/user-attachments/assets/f9fbc2ce-1402-483b-9c21-820d604fb901)
 
 ### Repository Contents:
 1. **app.py**: A Dash-based interactive web application for visualizing hotel bookings data.
