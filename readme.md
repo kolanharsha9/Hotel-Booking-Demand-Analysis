@@ -24,11 +24,11 @@ Ensure that you have the following installed on your system:
 1. Open your terminal or command prompt.
 2. Run the following command to clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/kolanharsha9/Hotel-Booking-Demand-Analysis
    ```
 3. Navigate to the cloned repository:
    ```bash
-   cd <repository-folder>
+   cd Hotel-Booking-Demand-Analysis
    ```
 
 ### Setting Up the Environment
@@ -64,37 +64,4 @@ For preprocessing and exploratory analysis using the `project.py` script:
    ```bash
    python project.py
    ```
-2. Outputs include:
-   - Visualizations of correlations, distributions, and trends.
-   - Results of normality tests and PCA analysis.
-
-## File Descriptions
-### Python Files
-- **app.py**:
-  - A multi-tab interactive application with:
-    - Outlier detection and visualization.
-    - Normality tests (D'Agostino, Shapiro-Wilk, Kolmogorov-Smirnov).
-    - PCA analysis for dimensionality reduction.
-    - Choropleth maps and other advanced visualizations.
-
-- **project.py**:
-  - Key operations:
-    - Data cleaning (handling missing values, outlier detection, feature engineering).
-    - Statistical tests for normality.
-    - Visualizations including heatmaps, box plots, pair plots, and 3D scatter plots.
-
-### Datasets
-- **hotel_bookings.csv**: Original dataset for analysis.
-- **hotel_pre.csv**: Cleaned and preprocessed dataset.
-
-### Dependencies
-- Key libraries include:
-  - Dash, Plotly, Pandas, Numpy, Seaborn, Scikit-learn, Matplotlib.
-- Full list available in `requirements.txt`.
-
-## Additional Notes
-- The application listens on port 8033 by default. Ensure this port is not in use before running the app.
-- Data visualizations are dynamically generated based on user inputs in the Dash app.
-
-For any issues or contributions, feel free to open a pull request or contact the repository maintainer.
 
